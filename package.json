@@ -1,0 +1,83 @@
+{
+  "name": "@plaited/cypress-ct",
+  "version": "1.0.0",
+  "description": "Cypress component testing Plaited framework integration",
+  "license": "ISC",
+  "engines": {
+    "node": ">= v18.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plaited/cypress-ct.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plaited/cypress-ct/issues"
+  },
+  "homepage": "https://github.com/plaited/cypress-ct#readme",
+  "keywords": [
+    "cypress",
+    "plaited",
+    "component test",
+    "framework definition",
+    "web components",
+    "custom elements"
+  ],
+  "type": "module",
+  "exports": {
+    "default": "./dist/index.js",
+    "node": "./dist/definition.js"
+  },
+  "files": [
+    "./dist/**",
+    "package.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun run build:mount && bun run build:definition",
+    "build:definition": "tsc --project tsconfig.definition.json",
+    "build:mount": "tsc --project tsconfig.mount.json",
+    "lint": "eslint . --ext .ts,.tsx,.js,.cjs",
+    "lint:fix": "bun run lint --fix --quiet",
+    "prepare": "husky install",
+    "prettier": "prettier . --write",
+    "test": "cypress run --component"
+  },
+  "lint-staged": {
+    "*.(js|cjs|tsx|ts)": [
+      "bun run lint:fix",
+      "bun run prettier"
+    ],
+    "package.json": [
+      "format-package -w"
+    ]
+  },
+  "browserslist": [
+    "> 2%"
+  ],
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@cypress/mount-utils": ">=4.0.0",
+    "@plaited/utils": "5.1.1"
+  },
+  "peerDependencies": {
+    "cypress": ">= 13.4.0",
+    "plaited": ">=5.0.3"
+  },
+  "devDependencies": {
+    "@plaited/eslint-prettier-config": "1.0.2",
+    "plaited": "5.0.5",
+    "cypress": "^13.5.0",
+    "vite": "4.5.0 ",
+    "@commitlint/cli": "18.4.0",
+    "@commitlint/config-conventional": "18.4.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.53.0",
+    "format-package": "7.0.0",
+    "husky": "8.0.3",
+    "prettier": "^3.0.3",
+    "lint-staged": "15.0.2",
+    "typescript": "5.2.2"
+  }
+}

@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  check:
+    name: Cypress test
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      # install a specific version of Node using
+      # https://github.com/actions/setup-node
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g bun
+
+      # Restore the previous NPM modules and Cypress binary archives.
+      # In case there's no previous cache the packages will be downloaded
+      # and saved automatically after the entire workflow successfully finishes.
+      # See https://github.com/actions/cache
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-node-${{ hashFiles('**/bun.lockb') }}
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/bun.lockb') }}
+
+      - name: install dependencies and verify Cypress
+        env:
+          # make sure every Cypress install prints minimal information
+          CI: 1
+        # print Cypress and OS info
+        run: |
+          bun install
+          bun cypress install
+          bun cypress verify
+          bun cypress info
+          bun cypress version
+          bun cypress version --component package
+          bun cypress version --component binary
+          bun cypress version --component electron
+          bun cypress version --component node
+
+      # Starts local server, then runs Cypress tests and records results on Cypress Cloud
+      - name: Cypress tests
+        run: bun run test
