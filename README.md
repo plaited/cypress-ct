@@ -1,6 +1,6 @@
 # Cypress test definition for [Plaited](https://github.com/plaited/plaited)
 
-[![Tests](https://github.com/plaited/cypress-ct/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/plaited/cypress-ct/actions/workflows/tests.yml)
+[![Tests](https://github.com/plaited/cypress-ct/actions/workflows/tests.yml/badge.svg)](https://github.com/plaited/cypress-ct/actions/workflows/tests.yml)
 
 
 This is a custom [Plaited](https://github.com/plaited/plaited) component test definition for cypress.
