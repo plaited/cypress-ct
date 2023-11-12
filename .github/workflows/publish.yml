@@ -23,7 +23,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_PAT }} 
       - name: Setup bun
         uses: oven-sh/setup-bun@v1
       - name: Setup
