@@ -69,7 +69,7 @@
     "@plaited/eslint-prettier-config": "1.0.2",
     "plaited": "5.0.5",
     "cypress": "^13.5.0",
-    "vite": "4.5.0 ",
+    "vite": "4.5.1 ",
     "@commitlint/cli": "18.4.0",
     "@commitlint/config-conventional": "18.4.0",
     "cz-conventional-changelog": "3.3.0",
